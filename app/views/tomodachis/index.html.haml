@@ -1,0 +1,56 @@
+.container
+  .content
+    .page-header
+      %h1= @profile["name"]
+      
+    = render 'flow_form'
+    
+    %table#tablesorter.zebra-striped
+      %thead
+        %tr
+          %th
+          %th
+          %th
+          
+      %tbody
+        %tr
+          %td  Profile
+          %td= @profile["name"]
+          %td= @profile
+          
+        - @friends.each do |friend|
+          %tr
+            %td  Friends
+            %td= friend["name"]
+            %td= friend
+            
+        - @likes.each do |like|
+          %tr
+            %td  Likes
+            %td= like
+            %td= like
+            
+        - @feeds.each do |feed|
+          %tr
+            %td  Feeds
+            %td= feed["message"]
+            %td= feed
+    
+        - @results.each do |result|
+          %tr
+            %td  Results
+            %td= result
+            %td= result
+            
+    %br
+    = link_to 'New Timeline', new_facebook_timeline_path
+    
+  = render 'footer'
+  
+:coffeescript
+  $ ->
+    $("table#tablesorter").tablesorter({ sortList: [[0,0]] })
+    
+    #$(".hoge").square()
+    #$(".piyo").circle()
+    #$(".hoge").lineTo($(".piyo"))

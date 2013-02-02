@@ -1,0 +1,12 @@
+.container
+  .content
+    .page-header
+      %h1 Editing facebook_timeline
+
+    = render 'form'
+
+    = link_to 'Show', @facebook_timeline
+    \|
+    = link_to 'Back', facebook_timelines_path
+    
+  = render 'footer'

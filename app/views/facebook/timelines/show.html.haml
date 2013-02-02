@@ -1,0 +1,20 @@
+.container
+  .content
+    .page-header
+      %h1 FacebookTimeline Profile
+
+    .modal{:style=>"position: relative; top: auto; left: auto; margin: 0 auto; z-index: 1"}
+      .modal-header
+        %h3 FacebookTimeline Profile
+        %a.close{:href=>"#{facebook_timelines_path}"} X
+
+      .modal-body
+        %p#notice
+          %b= notice
+      
+
+      .modal-footer
+        %a.btn.primary{:href=>"#{edit_facebook_timeline_path(@facebook_timeline)}"} Edit
+        %a.btn.secondary{:href=>"#{facebook_timelines_path}"} Back
+        
+  = render 'footer'

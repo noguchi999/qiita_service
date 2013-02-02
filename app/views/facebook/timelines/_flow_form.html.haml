@@ -1,0 +1,14 @@
+= form_tag({action: 'search'}, remote: true) do
+  .input
+    = text_field_tag :search, nil, class:'input-file'
+    = submit_tag 'Search Celeb', class:'btn primary'
+    = notice
+
+  %br
+  %br
+    
+  #flow
+    - @arrows.each do |arrow|
+      %div{id:"#{arrow.id}", class:"box", style:"left:#{arrow.left}; top:#{arrow.top};"}
+        %a{name:"#{arrow.id}", href:"##{arrow.target}", class:"#{arrow.class}"}
+        %a{name:"#{arrow.name}", href:"#{arrow.url}", target: "_blank"}#{arrow.name}

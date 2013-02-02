@@ -1,0 +1,8 @@
+.container
+  .content
+    .page-header
+      %h1 Welcome to Tomodachi
+
+      = link_to 'Login', Koala::Facebook::OAuth.new.url_for_oauth_code(:callback => redirect_facebook_oauths_url)
+
+  = render 'footer'

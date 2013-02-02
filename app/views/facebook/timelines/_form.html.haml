@@ -1,0 +1,12 @@
+= form_for @facebook_timeline do |f|
+  -if @facebook_timeline.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@facebook_timeline.errors.count, "error")} prohibited this facebook_timeline from being saved:"
+      %ul
+        - @facebook_timeline.errors.full_messages.each do |msg|
+          %li= msg
+
+  %fieldset
+    .actions
+      = f.submit 'Save', :class=>"btn primary"
+      %button.btn{:type=>"reset"}="Clear"
