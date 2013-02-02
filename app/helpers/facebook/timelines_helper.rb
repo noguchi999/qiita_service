@@ -9,7 +9,8 @@ module Facebook::TimelinesHelper
   end
 
   def access_token
-    facebook_cookies["access_token"]
+    cookies[:access_token]
+    #facebook_cookies["access_token"]
   end
 
   def graph

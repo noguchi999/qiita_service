@@ -15,18 +15,6 @@ class Facebook::TimelinesController < ApplicationController
       return
     end
 
-    @arrows = []
-
-    @test_users = Facebook::TestUsers.find_all
-    #post = graph.put_wall_post("son of the beach ball")
-    #graph.put_comment(post["id"], "hey, i'm learning kaola, too")
-    @profile = graph.get_object("me")
-    @likes   = graph.get_connections("me", "likes")
-    @friends = graph.get_connections("me", "friends")
-    @feeds   = graph.get_connections("me", "feed")
-    @results = graph.search("patricia", {type: "user"})
-    #@results = graph.get_objects(["sakon"])
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { head :no_content }
@@ -34,14 +22,12 @@ class Facebook::TimelinesController < ApplicationController
   end
 
   def search
-    logger.debug "search_log: #{params}"
+    @friends = graph.get_connections("me", "friends").map do |friend|
+      friend
+    end
+    logger.debug "search_log2: #{@friends}"
 
-    @arrows = []
-    arrow = Struct.new("Arrow", :id, :name, :class, :url, :target, :left, :top)
-    @arrows << arrow.new("a", "Andy", "arrow_n", "http://www.facebook.com/profile.php?id=100001674640974", "g", "50px", "80px")
-    @arrows << arrow.new("b", "Becky", "arrow_n", "http://www.facebook.com/profile.php?id=100001674640974", "c", "350px", "30px")
-
-    render json: { status: 'success', arrows: @arrows}
+    render json: { status: 'success', friends: @friends}
   end
 
   # GET /facebook/timelines/1
